@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+PACKAGE = "legged_robot"
+
+from dynamic_reconfigure.parameter_generator_catkin import *
+
+gen = ParameterGenerator()
+
+gen.add("setpoint",    int_t,    0, "Desired angle in degree", 0,  -359, 359)
+gen.add("dt", double_t, 0, "Delta t between points",    .01, 0,   0.01)
+gen.add("steps",    int_t,    0, "Number of steps", 100,  0, 10000)
+gen.add("final_time",   double_t,    0, "desired final time", 0.3,  0, 1)
+
+
+exit(gen.generate(PACKAGE, "legged_robot", "Param_3rd_degree"))
+

@@ -1,0 +1,34 @@
+<launch>
+
+    <node name="position_controller" pkg="pid" type="controller" output="screen" >
+      <param name="node_name" value="position_controller" />
+      <param name="Kp" value="0.3" />
+      <param name="Ki" value="0.0" />
+      <param name="Kd" value="0.2" />
+      <param name="upper_limit" value="28.0" />
+      <param name="lower_limit" value="-28.0" />
+      <param name="windup_limit" value="10" />
+      <param name="diagnostic_period" value="0.25" />
+      <param name="max_loop_frequency" value="100.0" />
+      <param name="min_loop_frequency" value="100.0" />
+    </node> 
+
+    <node name="High_Level_Controller" pkg="legged_robot" type="simulation_treadmill_final_2" output="screen" />
+
+    <node name="Hip_Interface" pkg="legged_robot" type="VV_Hip_Interface" output="screen" />
+
+    <node name="Knee_Interface" pkg="legged_robot" type="VV_Knee_Interface" output="screen" />
+
+        <node name="IMU" pkg="legged_robot" type="VV_IMU_Interface" output="screen" />
+
+<!--     <include file="$(find botasys_force_torque_sensor)/launch/driver.launch"/>
+ -->
+
+
+<!--    <node name="rqt_plot" pkg="rqt_plot" type="rqt_plot"
+    args="/state/data /setpoint/data" /> -->
+
+   <node name="rqt_plot_2" pkg="rqt_plot" type="rqt_plot"
+    args="/compression/data" />
+
+</launch>
